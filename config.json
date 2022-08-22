@@ -1,0 +1,23 @@
+{
+
+    "Params":
+    {
+        "local_server":"True",
+        "local_uri": "mysql://root:@localhost/codingthunder",
+        "prod_uri": "mysql://root:@localhost/codingthunder",
+        "fb_url":"https://facebook.com/codingthunder",
+        "tw_url":"https://twitter.com/codingthunder",
+        "gh_url":"https://github.com/codingthunder",
+        "blog_name": "Traivels Blogs",
+        "tag_line": "A blog like by Traivler",
+        "gmail-user": "techpanda.sr@gmail.com",
+        "gmail-password": "QAP@ss;2",
+        "about_text": "Hi my name is Shubham and I create Blog WebApplication using flask framework.",
+        "no_of_posts": 3,
+        "login_image":"bootstrap-logo.svg",
+        "admin_user": "shubham",
+        "admin_password": "QAP@ss;3",
+        "upload_location": "C:\\Users\\dell\\Documents\\FLASK_FRAMEWORK\\Cleanblog\\static\\assets\\img"
+
+    }
+}
