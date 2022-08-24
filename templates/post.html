@@ -9,10 +9,10 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-heading">
-              <h1>{{post.title}}</h1>
-              <h2 class="subheading">{{post.tagline}}</h2>
-              <span class="meta">Posted by
-                <a href="#">Admin</a>
+              <h1 style="color:black">{{post.title}}</h1>
+              <h2 style="color:black" class="subheading">{{post.tagline}}</h2>
+              <span style="color:black" class="meta">Posted by
+                <a href="#" style="color:black">Admin</a>
                 on {{post.date}}</span>
             </div>
           </div>
@@ -25,8 +25,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-            {{post.content}}
-
+            <pre>{{post.content}}</pre>
             
           </div>
         </div>

@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, url_for, session, redirect
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
 import json
+# import uuid
 from flask_mail import Mail, Message
 from datetime import datetime
 import os
@@ -16,14 +17,14 @@ local_server=True
 app = Flask(__name__)
 app.secret_key = 'super-secret-key'
 app.config['UPLOAD_FOLDER'] = params['upload_location']
-# app.config.update(
-#     MAIL_SERVER = 'smtp.gmail.com',
-#     MAIL_PORT = '465',
-#     MAIL_USE_SSL = True,
-#     MAIL_USERNAME = params['gmail-user'],
-#     MAIL_PASSWORD=  params['gmail-password']
-# )   #this is the form of gmail id mail send one mail come
-# mail = Mail(app)
+app.config.update(
+    MAIL_SERVER = 'smtp.gmail.com',
+    MAIL_PORT = '465',
+    MAIL_USE_SSL = True,
+    MAIL_USERNAME = params['gmail-user'],
+    MAIL_PASSWORD=  params['gmail-password']
+)   #this is the form of gmail id mail send one mail come
+mail = Mail(app)
 
 
 if(local_server):                        # if our project run in local server
@@ -32,7 +33,7 @@ else:
     app.config['SQLALCHEMY_DATABASE_URI'] = params['prod_uri']
 
 
-db = SQLAlchemy(app)   # initializing
+    db = SQLAlchemy(app)   # initializing
 
 
 class contacts(db.Model):
@@ -179,12 +180,20 @@ def contact():
         entry = contacts(name=name,phone_num=phone, mes=message, date=datetime.now(), email=email)
         db.session.add(entry)
         db.session.commit()
-        # mail.send_message('New message from ' + name,
-        #                   sender=email,
-        #                   recipients = [params['gmail-user']],
-        #                   body = message + "\n" + phone
-        #                   )
+        mail.send_message('New message from ' + name,
+                          sender=email,
+                          recipients = [params['gmail-user']],
+                          body = message + "\n" + phone + "\n" + email
+                          )
     return render_template('contact.html', params=params)
+
+
+# @app.route("/reset_password", methods=['POST', 'GET'])
+# def reset_request():
+#     if 'user' in session:
+#         return redirect('/')
+
+#     return render_template("reset_request.html", title="Reset Request", params=params)
 
 if __name__ == "__main__":
     app.run(debug=True)
