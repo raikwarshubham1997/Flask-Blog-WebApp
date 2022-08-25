@@ -33,7 +33,7 @@ else:
     app.config['SQLALCHEMY_DATABASE_URI'] = params['prod_uri']
 
 
-    db = SQLAlchemy(app)   # initializing
+db = SQLAlchemy(app)   # initializing
 
 
 class contacts(db.Model):
